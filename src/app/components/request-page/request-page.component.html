@@ -1,0 +1,332 @@
+<div class=" row  ">
+
+  <div class="col-md-9   ">
+    <div class=" search position-relative   px-2  ">
+      <i class="fa-solid me-2 pe-2  py-2 fa-earth-africa"></i>
+      <span class="position-relative ms-4 bg-danger">
+        <input [(ngModel)]="searchInp" required (keyup)="writingTosearch($event)" class="search-input w-50" type="text"
+          placeholder="Search Employee Name , Code or Job Title">
+        <i *ngIf="!deleteSign" class="fa-solid fa-rotate-left"></i>
+        <i (click)="clearSearchInp()" *ngIf="deleteSign" class="fa-solid fa-xmark"></i>
+        <div *ngIf="deleteSign"  class="search-result-box position-absolute">
+
+
+          <div (click)="chooseThisEmployee(employee)" *ngFor='let employee of searchResult' class="searched-employee">
+            <div class="row my-1 mx-1 ">
+              <div class="col-2 mx-0 px-0">
+                <img src="../../../assets/imgs/blank-profile2.jpg" class=" " alt="">
+              </div>
+              <div class="col-10 ">
+                <p class="">{{employee.code}} | {{employee.name}} |{{employee.jobTitle}}</p>
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+
+
+      </span>
+
+
+    </div>
+
+    <div class="employee-info my-2  m-0  row ">
+      <div class="col-2 p-0  img-employee">
+        <img src="../../../assets/imgs/blank-profile2.jpg" class=" " alt="">
+      </div>
+      <div class="col-10 employee-details w-75">
+        <h6 class="ms-4"> <span class="code">{{choosenEmployee.code}} || </span> {{choosenEmployee.name}} </h6>
+        <div class=" px-2 d-flex ">
+          <p class="d-inline info me-4">Job Title</p>
+          <P class="info-value">{{choosenEmployee.jobTitle}}</P>
+        </div>
+        <div class=" px-2 d-flex ">
+          <p class="d-inline info me-4">Salary Profile</p>
+          <P class="info-value">{{choosenEmployee.salaryProfile}}</P>
+        </div>
+
+        <div class=" px-2 d-flex ">
+          <p class="d-inline info me-4">Joing Date</p>
+          <P class="info-value">{{choosenEmployee.joiningDate}}</P>
+        </div>
+
+        <div class=" px-2 d-flex ">
+          <p class="d-inline info me-4">Location</p>
+          <div class="address-details ">
+            <p class="info-value d-inline-block">   {{choosenEmployee.location[0].country}} <span *ngIf="choosenEmployee.location[0].country"  class="spliter"> <i
+                  class="fa-solid fa-angle-right ms-0 me-1"></i> </span> </p>
+            <p class="info-value d-inline-block">    {{choosenEmployee.location[0].city}} <span *ngIf="choosenEmployee.location[0].city"  class="spliter"> <i
+                  class="fa-solid fa-angle-right ms-0 me-1"></i> </span> </p>
+            <p class="info-value d-inline-block">    {{choosenEmployee.location[0].area}} <span  class="spliter"> </span> </p>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+    </div>
+
+    <div class="request-form-box mb-3  ">
+      <!-- -->
+      <form (ngSubmit)="onSubmitLeaveRequest()" [formGroup]="leaveRequestForm">
+        <div class="request-form-box position-relative px-4 py-5 mx-3 my-4">
+          <span class="form-title px-1">Leave Details </span>
+
+          <div class=" px-2 row input-group ">
+            <div class=" col-md-3 form-titles ">
+              Leave to Avail
+            </div>
+            <div class="col-md-9">
+              <input formControlName="LeavetoAvail" required class="form-radio me-1 " type="radio" name="LeavetoAvail"
+                value="abroad" id="abroad">
+              <label class="form-radio-label me-2" for="abroad">Abroad</label>
+              <input formControlName="LeavetoAvail" required class="form-radio me-1  " checked type="radio"
+                name="LeavetoAvail" value="local" id="local">
+              <label class="form-radio-label me-2" for="local">Local</label>
+            </div>
+          </div>
+
+
+          <div class=" px-2 row mt-3 input-group ">
+            <div class="col-md-3 form-titles ">
+              Require Leave Salary Advance
+            </div>
+            <div class="col-md-9">
+              <input formControlName="RequireLeaveSalaryAdvance" required class="form-radio me-1 " type="radio"
+                name="RequireLeaveSalaryAdvance" value="yes" id="yes">
+              <label class="form-radio-label me-2" for="yes">Yes</label>
+              <input formControlName="RequireLeaveSalaryAdvance" required class="form-radio me-1  " checked type="radio"
+                name="RequireLeaveSalaryAdvance" value="no" id="no">
+              <label class="form-radio-label me-2" for="no">No</label>
+            </div>
+          </div>
+
+          <div class=" px-2 row  mt-3  input-group ">
+
+            <div class="col-md-3 form-titles ">
+              Expected Leaving date
+            </div>
+            <div class="col-md-3">
+              <input
+                [ngClass]="{'red-border-alert' : leaveRequestForm.controls.LeavingDate.invalid&&leaveRequestForm.controls.LeavingDate.touched}"
+                formControlName="LeavingDate" required class="date-input ps-3 " name="LeavingDate" type="date">
+            </div>
+            <div class="col-md-3 form-titles ">
+              <div class=" ">
+                Expected Rejoining date
+              </div>
+            </div>
+            <div class="col-md-3">
+              <input
+                [ngClass]="{'red-border-alert' : leaveRequestForm.controls.RejoiningDate.invalid&&leaveRequestForm.controls.RejoiningDate.touched}"
+                formControlName="RejoiningDate" required class="date-input ps-3 " name="RejoiningDate" type="date">
+            </div>
+          </div>
+
+          <div class="row  mt-3 input-group">
+            <div class="col-md-3 px-2 form-titles ">
+              Expected End Date
+            </div>
+            <div class="col-md-12  row mt-3 mx-0 py-2 expected-leave-group">
+
+              <div class="col-md-6 mb-1">
+                <label class="form-titles" for="">1st Leave Type</label>
+                <select
+                  [ngClass]="{'red-border-alert' : leaveRequestForm.controls.leaveType.invalid&&leaveRequestForm.controls.leaveType.touched}"
+                  formControlName="leaveType" required name="leaveType" class="select-input px-3 py-1 ms-4"
+                  aria-label="Default select example">
+                  <option value="">--Please select leave type--</option>
+                  <option value="Vaccation">Vaccation</option>
+                  <option value="Sick">Sick</option>
+                  <option value="Work">Work</option>
+                </select>
+
+              </div>
+              <div class="col-md-6  text-center">
+                <label class="form-titles" for="daysNo">No. of Days</label>
+                <input
+                  [ngClass]="{'red-border-alert' : leaveRequestForm.controls.noOfDays.invalid&&leaveRequestForm.controls.noOfDays.touched}"
+                  formControlName="noOfDays" required min="1" class=" ms-2 px-1 py-1" type="number"
+                  placeholder="Enter numb" name="noOfDays" id="daysNo">
+              </div>
+
+
+            </div>
+            <div class="col-md-12 m-auto footer-plus text-center">
+              <i class="fa-solid p-1 fa-plus"></i>
+            </div>
+            <div class="col-md-12 mt-3 m-auto text-center">
+
+              <p class="form-titles text-center"><i class="fa-solid fa-calendar-check me-2"></i>Total Days</p>
+            </div>
+
+          </div>
+
+          <div class="row  mt-3 ">
+            <div class="col-md-6 text-center  px-0">
+              <div class="input-group2 m-2">
+                <label class="form-label  py-1 ps-3" for="">Guaranter</label>
+                <select
+                  [ngClass]="{'red-border-alert' : leaveRequestForm.controls.Guaranter.invalid&&leaveRequestForm.controls.Guaranter.touched}"
+                  formControlName="Guaranter" required name="Guaranter"
+                  class="select-input mb-1 w-50 bg-white px-3 py-1" aria-label="Default select example">
+                  <option value="">Select an option</option>
+                  <option value="manager">manager</option>
+                  <option value="supervisor">supervisor</option>
+                  <option value="other">other</option>
+                </select>
+              </div>
+
+            </div>
+            <div class="col-md-6  text-center px-0">
+              <div class="input-group2 m-2">
+                <label class="form-label  py-1 ps-3" for="">Replacment</label>
+                <select
+                  [ngClass]="{'red-border-alert' : leaveRequestForm.controls.Replacment.invalid&&leaveRequestForm.controls.Replacment.touched}"
+                  formControlName="Replacment" required name="Replacment"
+                  class="select-input mb-1 w-50 bg-white px-3 py-1" aria-label="Default select example">
+                  <option value="">Select an option</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="row   mt-3 input-group3 ">
+
+            <label class="form-label" for="">Contact details During Leave</label>
+            <div class="col-md-6 py-1   ">
+              <label class="form-radio-label me-3" for="">Address</label>
+              <input
+                [ngClass]="{'red-border-alert' : leaveRequestForm.controls.address.invalid&&leaveRequestForm.controls.address.touched}"
+                formControlName="address" required type="text" name="address" class="date-input w-50 ">
+            </div>
+            <div class="col-md-6 py-1  ">
+              <label class="form-radio-label me-3" for="">Contact No</label>
+              <input
+                [ngClass]="{'red-border-alert' : leaveRequestForm.controls.contactNo.invalid&&leaveRequestForm.controls.contactNo.touched}"
+                formControlName="contactNo" required type="text" name="contactNo" class="date-input w-50 ">
+            </div>
+            <div class="col-md-6 py-1  ">
+              <label class="form-radio-label me-3" for="">Email</label>
+              <input
+                [ngClass]="{'red-border-alert' : leaveRequestForm.controls.email.invalid&&leaveRequestForm.controls.email.touched}"
+                formControlName="email" required type="email" name="email" class="date-input w-50 ">
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="row mt-3 extra-info-form  mb-3">
+          <div class="col-md-6  text-center  px-0">
+            <div class="input-group2 me-2 ">
+              <label class="form-label  py-1 ps-3" for="">Remarks</label>
+              <textarea
+                [ngClass]="{'red-border-alert' : leaveRequestForm.controls.Remarks.invalid&&leaveRequestForm.controls.Remarks.touched}"
+                formControlName="Remarks" required name="Remarks" class="resize-none date-input w-50" id="" cols="5"
+                rows="4"></textarea>
+
+            </div>
+
+          </div>
+          <div class="col-md-6  attachment-input  text-center px-0">
+            <div class="input-group2  ms-2 ">
+              <label class="form-label  py-1 ps-3" for="">Attachments</label>
+              <div class="mb-4 mt-3 px-2">
+                <input
+                  [ngClass]="{'red-border-alert' : leaveRequestForm.controls.formFileUpload.invalid&&leaveRequestForm.controls.formFileUpload.touched}"
+                  formControlName="formFileUpload" required (change)="fileUploaded($event)" class="me-1" type="file"
+                  id="formFileUpload" multiple name="attachmentFile">
+                <p class="info-value" *ngIf='uploadedFileStatus'>File Uploaded is .... </p>
+                <span class="info-value me-1" *ngFor="let file of uploadedFilesName">{{file.name}}</span>
+
+                <label for="formFileUpload"> <i class="fa-solid fa-paperclip"></i></label>
+
+              </div>
+              <p class="px-2 file-alert-message"><i class="fa-solid fa-circle-exclamation me-1"></i>Max file size 1 MP
+              </p>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="btn-container mb-4 mt-5">
+          <p class="text-danger" *ngIf="!choosenEmployeeAlert&&leaveRequestForm.touched">Please choose your employee</p>
+
+          <button (click)="leaveRequestForm.reset()" type="button" id="cancelBtn"
+            class="btn py-0 px-3 me-2 ">Cancel</button>
+          <button [disabled]="leaveRequestForm.invalid" type="submit" id="submitBtn"
+            class="btn py-0 px-3 ">Submit</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <div class="col-md-3 mb-2  ">
+    <div class="leaves-info-box">
+      <h3 class="pt-1">Annual Leave Balance as on Thu,Jul 07,2022</h3>
+      <div class="details-section pb-3 px-3">
+        <h4>Annual Leave</h4>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Annual Leave Entitlement</p>
+          <P>30 Days</P>
+        </div>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Annual Leave Balance</p>
+          <P>20 Day(s)</P>
+        </div>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">All Bal. Till Year End</p>
+          <P>0 Day(s)</P>
+        </div>
+        <h4>Extra Days</h4>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Extra Days Balance</p>
+          <P>9 Day(s)</P>
+        </div>
+        <h4>Sick Leave</h4>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Sick Leave(s) Taken</p>
+          <P>0 Day(s)</P>
+        </div>
+        <h4>Unpaid Leave</h4>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Unpaid Leave(s) Taken</p>
+          <P>50 Day(s)</P>
+        </div>
+        <h4>Leave In Progress</h4>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Annular Leave</p>
+          <P>0 Day(s)</P>
+        </div>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Extra Days</p>
+          <P>0 Day(s)</P>
+        </div>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Sick Leaves</p>
+          <P>0 Day(s)</P>
+        </div>
+        <div class="details px-2 d-flex justify-content-between">
+          <p class="d-inline">Unpaid Leaves</p>
+          <P>0 Day(s)</P>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+</div>
+

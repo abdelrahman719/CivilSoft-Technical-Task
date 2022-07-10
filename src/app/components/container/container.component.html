@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+<div class="main-container mt-1">
+  <header [class.px-4]="displayFlag" class="d-flex px-2 justify-content-between">
+    <span [class.pt-1]="displayFlag" class="title">{{title}}</span>
+    <span class="fw-bold py-1 notification "><span *ngIf="displayFlag" class="flag py-1"><i class="fa-solid fa-flag"></i></span> {{notification}}</span>
+
+  </header>
+  <div class="content py-2  px-2 ">
+
+    <router-outlet (activate)="runEmitChanges($event)"></router-outlet>
+
+  </div>
+
+</div>
+<footer></footer>

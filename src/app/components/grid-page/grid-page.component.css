@@ -1,0 +1,244 @@
+::ng-deep :root {
+  --icon-color: #3d3d9b;
+
+}
+
+
+.search
+{
+  color: var(--icon-color);
+}
+.search-input
+{
+  border-radius: 5px;
+  border: solid 1px var(--icon-color);
+
+}
+.search-input::placeholder
+{
+  font-size: calc(0.4rem + .5vw);
+  padding-left: 5px;
+
+}
+.fa-rotate-left
+{
+  color: gainsboro;
+  position: absolute;
+  right:.8em;
+  top: .3em;
+  font-size: calc(0.6rem + 0.4vw);
+}
+.fa-xmark
+{
+  color: gainsboro;
+  position: absolute;
+  right:.8em;
+  top: .3em;
+  font-size: calc(0.6rem + 0.4vw);
+  cursor: pointer;
+}
+.fa-earth-africa
+{
+  border: solid 1px var(--icon-color) ;
+  border-radius: 20%;
+  font-size: calc(0.6rem + 0.5vw);
+  cursor: pointer;
+
+}
+
+.fa-magnifying-glass
+{
+color: white;
+background-color: var(--icon-color);
+border-radius: 20%;
+font-size: calc(0.6rem + 0.4vw);
+cursor: pointer;
+}
+.tools i
+{
+
+  color: var(--icon-color);
+  font-size: calc(0.5rem + 0.5vw);
+
+
+}
+.fa-plus:hover ,.fa-pen-to-square:hover
+{
+  color: rgb(206, 13, 13) !important;
+  cursor: pointer;
+}
+.fa-check-double{
+  color: rgb(13, 206, 71) !important
+}
+.fa-check-double:hover{
+  color: var(--icon-color) !important;
+  cursor: pointer;
+}
+table thead{
+  background-color: #d3d3d3;
+ font-weight: 100;
+}
+table thead th{
+
+ font-weight: 700;
+ font-size: 10px;
+}
+table tbody{
+  background-color: #fafafa;
+  border-bottom: solid 1px #d3d3d3;
+}
+
+table tbody td{
+
+  font-weight: 400;
+  font-size: 12px;
+ }
+table .employee-img
+{
+  width: 25px;
+  height: 25px;
+}
+
+/*** Grid for table ***/
+.col1
+{
+  width: 4vw !important;
+}
+.col2
+{
+  width: 12vw !important;
+}
+
+.special-inputs
+{
+border: solid 1px gray;
+border-radius: 3px;
+  background-color: transparent;
+  min-width: min-content;
+  width: fit-content !important;
+  text-align: center;
+  padding: 0 !important;
+  font-size: calc(0.5rem + .2vw);
+
+
+}
+.special-inputs:disabled
+{
+  border: 0;
+}
+/***** for leaving status classes****/
+
+.st-request-level
+{
+  border-left: solid 3px blue;
+}
+.st-under-approval
+{
+  border-left: solid 3px orange;
+}
+.st-request-approved
+{
+  border-left: solid 3px green;
+}
+.st-action-taken
+{
+  border-left: solid 3px brown;
+}
+.st-closes-transaction
+{
+  border-left: solid 3px darkred;
+}
+.st-future-dated-transaction
+{
+  border-left: solid 3px rgb(61, 61, 85);
+}
+.st-returned
+{
+  border-left: solid 3px red;
+}
+.st-hold
+{
+  border-left: solid 3px burlywood;
+}
+.st-returned-and-hold
+{
+  border-left: solid 3px gray;
+}
+.st-extended-leave-request
+{
+  border-left: solid 3px pink;
+}
+
+/**** status dots for footer ***/
+.status-list
+{
+  list-style: none;
+  white-space: nowrap;
+  font-size: calc(0.5rem + 0.3vw);
+
+
+}
+.status-list span
+{
+  margin-right: 3px;
+}
+
+.dot-request-level
+{
+  background-color:  blue; width:10px;height:10px
+
+}
+.dot-under-approval
+{
+  background-color:  orange; width:10px;height:10px
+
+}
+.dot-request-approved
+{
+  background-color:  green; width:10px;height:10px
+
+}
+.dot-action-taken
+{
+  background-color:  brown; width:10px;height:10px
+
+}
+.dot-closes-transaction
+{
+  background-color:  darkred; width:10px;height:10px
+
+}
+.dot-future-dated-transaction
+{
+  background-color:  rgb(61, 61, 85); width:10px;height:10px
+
+}
+.dot-returned
+{
+  background-color:  red; width:10px;height:10px
+}
+.dot-hold
+{
+  background-color:  burlywood; width:10px;height:10px
+
+}
+.dot-returned-and-hold
+{
+  background-color:  gray; width:10px;height:10px
+
+}
+.dot-extended-leave-request
+{
+  background-color:  pink; width:10px;height:10px
+
+}
+
+/***************************/
+.form-select
+{
+  font-size: calc(0.4rem + .5vw);
+  cursor: pointer;
+}
+
+/********************/
+

@@ -1,0 +1,122 @@
+<header class="d-flex  justify-content-between pe-3 ps-2 pt-2">
+  <div class="search w-75 ">
+    <i class="fa-solid me-2 p-1  fa-earth-africa"></i>
+    <span class="position-relative">
+      <input (keyup)="writing()" class="search-input w-50" type="text"
+       [(ngModel)]="searchInp" placeholder="Search Employee Name , Code or Job Title">
+      <i *ngIf="!deleteSign" class="fa-solid fa-rotate-left"></i>
+      <i (click)="clearSearchInp()" *ngIf="deleteSign" class="fa-solid fa-xmark"></i>
+    </span>
+
+    <i class="fa-solid ms-2  p-1  fa-magnifying-glass"></i>
+
+
+  </div>
+  <div class="tools ">
+
+    <a [routerLink]="['/']"> <i class="fa-solid me-2 py-1 px-2 border-start fa-plus"></i></a>
+
+    <i (click)="edit()" *ngIf="canEdit" class="fa-solid me-2 py-1 px-2 border-start fa-pen-to-square"></i>
+    <i (click)="save()" *ngIf="!canEdit" class=" me-2 py-1 px-2 border-start fa-solid fa-check-double"></i>
+    <i class="fa-solid me-2 py-1 px-2 border-start fa-eye"></i>
+    <i class="fa-solid me-2 py-1 px-2 border-start fa-square-check"></i>
+    <i class="fa-solid me-2 py-1 px-2 border-start fa-trash-can"></i>
+    <i class="fa-solid me-2 py-1 px-2 border-start fa-print"></i>
+    <i class="fa-solid me-2 py-1 px-2 border-start fa-ellipsis-vertical"></i>
+
+  </div>
+
+</header>
+
+
+
+<form>
+
+  <table class=" table table-hover text-center container-fluid mt-5">
+    <thead>
+      <tr>
+        <th class="py-2 col1" scope="col">Reg No</th>
+        <th class="col1" scope="col">Image</th>
+        <th class="col1" scope="col">Code</th>
+        <th class="col2" scope="col">Employee Name</th>
+        <th class="col2" scope="col">Job Title</th>
+        <th class="col2" scope="col">Salary Profile</th>
+        <th class="col2" scope="col">Expected Leave Start Date</th>
+        <th class="col2" scope="col">Expected Leave Rejoin Date</th>
+        <th class="col2" scope="col">Actual Leaving</th>
+        <th scope="col">Leave Type 1</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+
+      <tr *ngFor="let employee of leaveRequestsConclusionData |filterUser : searchInp ; let i = index   "
+
+        [class]="leaveRequestsConclusionData[i].requestStatus">
+
+        <td>{{i+1}}</td>
+        <td><img class="employee-img" [src]="leaveRequestsConclusionData[i].profileImg"> </td>
+
+        <td> {{employee.code}}</td>
+        <td> {{employee.name}}</td>
+        <td> {{employee.jobTitle}}</td>
+        <td> {{ employee.salaryProfile}}</td>
+        <td> <input (change)="update($event , i ,'leavingDate')" type="date" [disabled]="canEdit"
+            class="special-inputs " [value]="employee.leavingDate"></td>
+        <td> <input (change)="update($event , i ,'ReJoiningDate')" type="date" [disabled]="canEdit"
+            class="special-inputs " [value]="employee.ReJoiningDate"></td>
+        <td> <input (change)="update($event , i ,'ActualLeavingDate')" type="date" [disabled]="canEdit"
+            class="special-inputs " [value]="employee.ActualLeavingDate"></td>
+        <td> <input (change)="update($event , i ,'leaveType')" type="text" [disabled]="canEdit" class="special-inputs "
+            [value]="employee.leaveType"></td>
+
+      </tr>
+
+    </tbody>
+
+
+
+  </table>
+</form>
+
+
+
+
+
+<footer class="row">
+  <ul class="status-info  col-md-10">
+
+    <li class="status-list pe-2 d-inline-block "><span class="dot-request-level d-inline-block"></span>Request Level
+    </li>
+    <li class="status-list pe-2 d-inline-block"><span class="dot-under-approval d-inline-block"></span>Under approval
+    </li>
+    <li class="status-list pe-2 d-inline-block"><span class="dot-request-approved d-inline-block"></span>Final Level
+      approved</li>
+    <li class="status-list pe-2 d-inline-block"><span class="dot-action-taken d-inline-block"></span>Action taken (
+      leaving is posted and approved or leave extension )</li>
+    <li class="status-list pe-2 d-inline-block"><span class="dot-closes-transaction d-inline-block"></span>Closed
+      transaction</li>
+    <li class="status-list pe-2 d-inline-block"><span class="dot-future-dated-transaction d-inline-block"></span>Future
+      Dated transaction</li>
+    <li class="status-list pe-2 d-inline-block "><span class="dot-returned d-inline-block"></span>Returned</li>
+    <li class="status-list pe-2 d-inline-block "><span class="dot-hold d-inline-block"></span>Hold</li>
+    <li class="status-list pe-2 d-inline-block "><span class="dot-returned-and-hold d-inline-block"></span>Returned and
+      Hold</li>
+    <li class="status-list pe-2 d-inline-block "><span class="dot-extended-leave-request d-inline-block"></span>Extended
+      Leave Request</li>
+
+
+  </ul>
+  <div class="pagination-window col-md-2">
+    <select disabled class="form-select py-1 ps-2" id="inputGroupSelect01">
+      <option selected>Page 1 of 3</option>
+      <option>Page 2 of 3</option>
+      <option>Page 3 of 3</option>
+
+    </select>
+
+  </div>
+
+
+</footer>
