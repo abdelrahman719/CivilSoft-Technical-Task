@@ -66,8 +66,10 @@ export class GridPageComponent implements OnInit {
     private requestData: RequestDataService,
     private router: Router
   ) {
+
     this.employeesData = this.requestData.getFromLocalStorage();
     this.leaveRequestsConclusionData =this.requestData.getconclosionFromLocalStorage();
+    this.getRandomStatus()
   }
 
   update(e: any, index: any, key: any) {
