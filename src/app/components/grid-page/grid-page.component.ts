@@ -68,8 +68,9 @@ export class GridPageComponent implements OnInit {
   ) {
 
     this.employeesData = this.requestData.getFromLocalStorage();
+
     this.leaveRequestsConclusionData =this.requestData.getconclosionFromLocalStorage();
-    this.getRandomStatus()
+
   }
 
   update(e: any, index: any, key: any) {
@@ -77,5 +78,7 @@ export class GridPageComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getRandomStatus()
+  }
 }

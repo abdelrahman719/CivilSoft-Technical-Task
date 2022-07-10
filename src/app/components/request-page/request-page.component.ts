@@ -35,6 +35,12 @@ export class RequestPageComponent implements OnInit {
   searchInp: string = '';
   employeesList = this.requestData.employees;
   searchResult: any = [];
+  randomProfileImgs: any = [
+    'assets/imgs/blank-profile1.jpg',
+    'assets/imgs/blank-profile2.jpg',
+    'assets/imgs/blank-profile3.jpg',
+  ];
+  randomImgSrc:any;
   choosenEmployee: any = {
     code: '',
     name: '',
@@ -49,6 +55,7 @@ export class RequestPageComponent implements OnInit {
   writingTosearch(e: any) {
     this.deleteSign = true;
     this.searchResult = [];
+  this.randomImgSrc= this.getRandomImg()
     for (let i = 0; i < this.employeesList.length; i++) {
       if (
         this.employeesList[i].code.startsWith(e.target.value) ||
@@ -61,6 +68,13 @@ export class RequestPageComponent implements OnInit {
     if (!this.searchInp) {
       this.searchResult = [];
       this.deleteSign = false;
+    }
+  }
+  getRandomImg() {
+    for (let i = 0; i < this.employeesList.length; i++) {
+      return this.randomProfileImgs[
+          Math.floor(Math.random() * this.randomProfileImgs.length)
+        ];
     }
   }
   chooseThisEmployee(e: any) {
@@ -157,6 +171,7 @@ export class RequestPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
 
 
   }
