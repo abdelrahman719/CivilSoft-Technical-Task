@@ -2,12 +2,13 @@
 {
   background-color: #ea3c42;
   color: white;
-  font-size: 22px;
+  font-size: calc(.9rem + .6vw);
+
   position: relative;
 }
 .mynav .fa-bars ,.fa-bell
 {
-  font-size: 18px;
+  font-size: calc(.9rem + .5vw);
   cursor: pointer;
 }
 .mynav .fa-caret-down
@@ -18,7 +19,7 @@
 .company-logo::after{
   content: " HCMS";
   color: white;
-  font-size: 16px;
+  font-size: calc(.5rem + .5vw);
 }
 .company-logo{
   border-left: 2px solid white;
