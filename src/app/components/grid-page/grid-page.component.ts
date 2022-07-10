@@ -23,9 +23,9 @@ export class GridPageComponent implements OnInit {
     'st-extended-leave-request',
   ];
   randomProfileImgs: any = [
-    '.././../../assets/imgs/blank-profile1.jpg',
-    '.././../../assets/imgs/blank-profile2.jpg',
-    '.././../../assets/imgs/blank-profile3.jpg',
+    'assets/imgs/blank-profile1.jpg',
+    'assets/imgs/blank-profile2.jpg',
+    'assets/imgs/blank-profile3.jpg',
   ];
 
   canEdit: boolean = true;
